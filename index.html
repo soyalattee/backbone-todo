@@ -6,6 +6,7 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"
@@ -18,10 +19,32 @@
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.16/backbone.localStorage-min.js"
     ></script>
-    <script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script defer type="module" src="js/views/app.js"></script>
+    <script defer type="module" src="js/models/todo.js"></script>
+    <script defer type="module" src="js/collections/todos.js"></script>
     <script defer type="module" src="js/main.js"></script>
   </head>
   <body>
+    <script type="text/template" id="stats-template">
+      <span id="todo-count"></span>
+    </script>
+    <section id="todoapp">
+      <header class="header">
+        <h1>todos</h1>
+        <input
+          class="new-todo"
+          placeholder="What needs to be done?"
+          autofocus
+        />
+      </header>
+      <section class="main">
+        <input class="toggle-all" id="toggle-all" type="checkbox" />
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list"></ul>
+      </section>
+      <footer class="footer"></footer>
+    </section>
+
     <div class="js-date"></div>
     <div class="listBox"></div>
   </body>

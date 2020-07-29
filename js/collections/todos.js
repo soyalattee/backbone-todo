@@ -12,7 +12,7 @@ var TodoList = Backbone.Collection.extend({
     return this.filter((todo) => !todo.get("completed"));
   },
   nextOrder: function () {
-    if (!this.lenght) {
+    if (!this.length) {
       return 1;
     }
     return this.last().get("order") + 1;
@@ -22,4 +22,8 @@ var TodoList = Backbone.Collection.extend({
   },
 });
 
-app.Todos = new TodoList();
+//전역 컬렉션 생성
+export default function todosInit() {
+  app.Todos = new TodoList();
+  console.log(app.Todos);
+}
