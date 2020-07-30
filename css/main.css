@@ -6,6 +6,10 @@ body {
   overflow-y: auto;
 }
 
+#main h1{
+  margin: 20px 10px 10px 10px;
+  display: inline-block;
+}
 .js-date {
   padding: 90px 10px 10px 10px;
   text-align: center;
