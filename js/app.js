@@ -1,6 +1,5 @@
 var app = app || {};
 var ENTER_KEY = 13;
-
 /**
  * app -model todo
  *
@@ -78,7 +77,7 @@ app.AppView = Backbone.View.extend({
     if (app.Todos.length) {
       this.main.show();
       this.footer.show();
-
+      console.log("app todo 목록이 있다");
       this.footer.html(
         this.statsTemplate({
           completed: completed,
@@ -97,7 +96,7 @@ app.AppView = Backbone.View.extend({
     console.log(this.allCheckbox.checked);
   },
   //todo 하나 추가
-  addOne: function () {
+  addOne: function (todo) {
     let view = new app.TodoView({ model: todo });
     $("#todo-list").append(view.render().el);
   },
@@ -156,18 +155,19 @@ app.TodoView = Backbone.View.extend({
     "keypress .edit": "updateOnEnter",
     "blur .edit": "close",
   },
-  initialize: () => {
+  initialize: function () {
     this.listenTo(this.HTMLModElement, "change", this.render);
   },
-  render: () => {
-    this.$el.addClass("editing");
-    this.$input.focusS();
+  render: function () {
+    this.$el.html(this.template(this.model.toJSON()));
+    this.$input = this.$(".edit");
+    return this;
   },
-  edit: () => {
+  edit: function () {
     this.$el.addClass("editing");
     this.$input.focus();
   },
-  close: () => {
+  close: function () {
     let value = this.$input.val().trim();
     if (value) {
       this.model.save({ title: value });
