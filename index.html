@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
   </head>
   <body>
     <script type="text/template" id="stats-template">
@@ -30,16 +30,21 @@
         <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 
       	<label><%- title %></label>
-      	<button class="destroy"></button>
+      	<a class="destroy"><i>x</i></a>
       </div>
       <input class="edit" value="<%- title %>">
     </script>
     <section id="todoapp">
       <header class="header">
         <h1>todos</h1>
-        <input id="new-todo" placeholder="What needs to be done?" autofocus />
+        <input
+          id="new-todo"
+          class="form-control todo-list-input"
+          placeholder="뭘 해야 할까요?"
+          autofocus
+        /><input type="submit" id="submit" class="button" value="추가" />
       </header>
-      <section id="main">
+      <section class="todo" id="main">
         <input class="toggle-all" id="toggle-all" type="checkbox" />
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list"></ul>

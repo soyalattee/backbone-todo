@@ -1,0 +1,160 @@
+
+body {
+  background-color: #006A80;
+  font-family:  "Nanum Gothic",'맑은 고딕', "Times New Roman", serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.js-date {
+  padding: 90px 10px 10px 10px;
+  text-align: center;
+  margin-top: 0px;
+  
+}
+.date{
+  color : #E3FDFF;
+  font-size:30px;
+  font-weight: bold;
+}
+
+.day{
+  color : #F3FDFF;
+  font-size:45px;
+  font-weight: bold;
+}
+
+input.button {
+  color: #F3FDFF;
+  background-color: #BBD1C7;
+  border-style: none;
+  padding : 0.9rem 1.075rem;
+  border-radius: 6px;
+  margin-left : 5px;
+  margin-bottom: 20px;
+  float: left;
+}
+
+
+body .todo, .done {
+  color: #00414F;
+}
+
+.listBox{
+  width: 100%;
+  position: absolute;
+  left:24%;
+  display: inline-block;
+}
+
+.toDoList h3{
+  float: left;
+  width: 80%;
+  text-align: center;
+  color:rgb(121, 141, 131) ;
+}
+
+.todo,
+.done {
+  background: #FDFDFF;
+  padding : 10px 10px 30px 30px;
+  width:20%;
+  float: left;
+  margin: 30px 30px 40px 20px;
+  position: relative;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.todo{
+  float:left;
+}
+
+.done{
+  display: inline;
+}
+.add-items {
+  margin-bottom: 1.5rem;
+  overflow: hidden
+  display: flex !important
+}
+
+.bgImage{
+  position: absolute;
+  top:0;
+  left:0;
+  min-height:100%;
+  width:100%;
+  z-index:-1;
+  animation: fadeIn .5s linear;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+ul {
+  margin: 1rem 0;
+  padding: 0.2rem 0.2rem;
+  width: 100%;
+}
+li {
+  list-style:none;
+  display: flex;
+  padding: 0.6rem 1rem;
+  margin : 0.6rem 0;
+  border: 0.1rem solid #BBD1C7;
+  width:80%
+}
+
+
+#todo-list li.editing .view{
+  display:none;
+}
+
+#todo-list li .edit{
+  display:none;
+}
+#todo-list li.editing .edit{
+  display:block;
+  border: 1px solid #fff;
+  font-size: 15px;
+	margin: 0 0 0 8px;
+}
+
+li div {
+  flex-grow: 99;
+}
+
+.inputForm {
+  width: 80%;
+}
+
+.form-control {
+  border: 1px solid #f3f3f3;
+  font-weight: 400;
+  font-size: 0.875rem
+}
+
+
+.form-control {
+  display: block;
+  width: 60%;
+  padding: 0.875rem 1.075rem;
+  font-size: 1rem;
+  line-height: 1;
+  color: #495057;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 2px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+}
+
+input:focus{
+  outline: none;
+}

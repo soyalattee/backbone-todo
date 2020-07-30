@@ -10,6 +10,7 @@ app.AppView = Backbone.View.extend({
 
   events: {
     "keypress #new-todo": "createOnEnter",
+    "click #submit": "createOnSubmit",
     "click #clear-completed": "clearCompleted",
     "click #toggle-all": "toggleAllComplete",
   },
@@ -79,6 +80,13 @@ app.AppView = Backbone.View.extend({
   //새로운 todo 추가&저장
   createOnEnter: function (event) {
     if (event.which != ENTER_KEY || !this.$input.val().trim()) {
+      return;
+    }
+    app.Todos.create(this.newAttributes());
+    this.$input.val("");
+  },
+  createOnSubmit: function (event) {
+    if (!this.$input.val().trim()) {
       return;
     }
     app.Todos.create(this.newAttributes());
