@@ -1,31 +1,8 @@
 "use strict";
 var app = app || {};
-
-// $(function () {
-//   app.Todos = new TodoList();
-//   new app.AppView();
-//   console.log("make AppView");
-// });
-
-var TodoList = Backbone.Collection.extend({
-  model: app.Todo,
-  localStorage: new Backbone.LocalStorage("todos-backbone"),
-  completed: function () {
-    return this.filter((todo) => todo.get("completed"));
-  },
-  remaining: function () {
-    return this.filter((todo) => !todo.get("completed"));
-  },
-  nextOrder: function () {
-    if (!this.length) {
-      return 1;
-    }
-    return this.last().get("order") + 1;
-  },
-  comparator: function (todo) {
-    return todo.get("order");
-  },
-});
+/**
+ * app- view
+ */
 
 app.AppView = Backbone.View.extend({
   el: "#todoapp",
@@ -37,7 +14,7 @@ app.AppView = Backbone.View.extend({
     "click #toggle-all": "toggleAllComplete",
   },
   initialize: function () {
-    console.log(this.el);
+    // console.log(this.el);
     this.allCheckbox = this.$("#toggle-all")[0];
     this.input = this.$("#new-todo");
     this.footer = this.$("#footer");
@@ -48,7 +25,7 @@ app.AppView = Backbone.View.extend({
     this.listenTo(app.Todos, "change:completed", this.filterOne);
     this.listenTo(app.Todos, "filter", this.filterAll);
     this.listenTo(app.Todos, "all", this.render);
-    console.log(app.Todos);
+    //console.log(app.Todos);
     app.Todos.fetch();
   },
 
@@ -59,7 +36,6 @@ app.AppView = Backbone.View.extend({
     if (app.Todos.length) {
       this.main.show();
       this.footer.show();
-
       this.footer.html(
         this.statsTemplate({
           completed: completed,
@@ -75,10 +51,9 @@ app.AppView = Backbone.View.extend({
       this.footer.hide();
     }
     this.allCheckbox.checked = !remaining;
-    console.log(this.allCheckbox.checked);
   },
   //todo 하나 추가
-  addOne: function () {
+  addOne: function (todo) {
     let view = new app.TodoView({ model: todo });
     $("#todo-list").append(view.render().el);
   },

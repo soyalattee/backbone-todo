@@ -1,5 +1,4 @@
 "use strict";
-
 var app = app || {};
 
 app.Todo = Backbone.Model.extend({
@@ -15,7 +14,3 @@ app.Todo = Backbone.Model.extend({
     });
   },
 });
-
-function modelInit() {
-  console.log("model init!");
-}

@@ -22,8 +22,4 @@ var TodoList = Backbone.Collection.extend({
   },
 });
 
-//전역 컬렉션 생성
-export default function todosInit() {
-  app.Todos = new TodoList();
-  console.log(app.Todos);
-}
+app.Todos = new TodoList();
