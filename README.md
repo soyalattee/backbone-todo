@@ -1,6 +1,7 @@
 # Backbone todolist web application
 
 project for practice Backbone framework
+Reference by "Developing Bacbkone.js Application"
 
 store data in localstorage (using HTML Web Storage API)
 
