@@ -1,14 +1,26 @@
-"use strict";
-import todosInit from "../collections/todos.js";
 var app = app || {};
 var ENTER_KEY = 13;
 
-$(function () {
-  app.Todos = new TodoList();
-  new app.AppView();
-  console.log("make AppView");
-});
+/**
+ * app -model todo
+ *
+ */
+app.Todo = Backbone.Model.extend({
+  defaults: {
+    content: "",
+    completed: false,
+  },
 
+  //completed 상태 업그레이드
+  toggle: function () {
+    this.save({
+      completed: !this.get("completed"),
+    });
+  },
+});
+/**
+ * app- collections
+ */
 var TodoList = Backbone.Collection.extend({
   model: app.Todo,
   localStorage: new Backbone.LocalStorage("todos-backbone"),
@@ -29,6 +41,11 @@ var TodoList = Backbone.Collection.extend({
   },
 });
 
+app.Todos = new TodoList();
+/**
+ * app- view
+ */
+
 app.AppView = Backbone.View.extend({
   el: "#todoapp",
   statsTemplate: _.template($("#stats-template").html()), //  handlebar로변경하기
@@ -39,7 +56,7 @@ app.AppView = Backbone.View.extend({
     "click #toggle-all": "toggleAllComplete",
   },
   initialize: function () {
-    console.log(this.el);
+    // console.log(this.el);
     this.allCheckbox = this.$("#toggle-all")[0];
     this.input = this.$("#new-todo");
     this.footer = this.$("#footer");
@@ -127,3 +144,43 @@ app.AppView = Backbone.View.extend({
     });
   },
 });
+
+/**
+ * todo-view
+ */
+app.TodoView = Backbone.View.extend({
+  tagName: "li",
+  template: _.template($("#item-template").html()),
+  events: {
+    "dblclick label": "edit",
+    "keypress .edit": "updateOnEnter",
+    "blur .edit": "close",
+  },
+  initialize: () => {
+    this.listenTo(this.HTMLModElement, "change", this.render);
+  },
+  render: () => {
+    this.$el.addClass("editing");
+    this.$input.focusS();
+  },
+  edit: () => {
+    this.$el.addClass("editing");
+    this.$input.focus();
+  },
+  close: () => {
+    let value = this.$input.val().trim();
+    if (value) {
+      this.model.save({ title: value });
+    }
+    this.$el.removeClass("editing");
+  },
+  updateOnEnter: (e) => {
+    if (e.which === ENTER_KEY) {
+      this.close();
+    }
+  },
+});
+
+(function () {
+  new app.AppView();
+})();

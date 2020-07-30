@@ -16,6 +16,6 @@ app.Todo = Backbone.Model.extend({
   },
 });
 
-export default function modelInit() {
+function modelInit() {
   console.log("model init!");
 }
