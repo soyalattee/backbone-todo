@@ -22,7 +22,7 @@
       	</li>
       </ul>
       <% if (completed) { %>
-      <button class="clear-completed">Clear completed</button>
+      <button id="clear-completed">Clear completed</button>
       <% } %>
     </script>
     <script type="text/template" id="item-template">
@@ -37,11 +37,7 @@
     <section id="todoapp">
       <header class="header">
         <h1>todos</h1>
-        <input
-          class="new-todo"
-          placeholder="What needs to be done?"
-          autofocus
-        />
+        <input id="new-todo" placeholder="What needs to be done?" autofocus />
       </header>
       <section id="main">
         <input class="toggle-all" id="toggle-all" type="checkbox" />

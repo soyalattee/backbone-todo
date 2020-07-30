@@ -16,7 +16,7 @@ app.AppView = Backbone.View.extend({
   initialize: function () {
     // console.log(this.el);
     this.allCheckbox = this.$("#toggle-all")[0];
-    this.input = this.$("#new-todo");
+    this.$input = this.$("#new-todo");
     this.footer = this.$("#footer");
     this.main = this.$("#main");
 
@@ -62,7 +62,7 @@ app.AppView = Backbone.View.extend({
     this.$("#todo-list").html("");
     app.Todos.each(this.addOne, this);
   },
-  filterOne: function () {
+  filterOne: function (todo) {
     todo.trigger("visible");
   },
   filterAll: function () {
@@ -71,7 +71,7 @@ app.AppView = Backbone.View.extend({
   //새로운 todo 항목을 위한 속성 생성
   newAttributes: function () {
     return {
-      title: this.$input.val().html(),
+      title: this.$input.val().trim(),
       order: app.Todos.nextOrder(),
       completed: false,
     };
