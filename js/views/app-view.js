@@ -23,7 +23,7 @@ app.AppView = Backbone.View.extend({
 
     this.listenTo(app.Todos, "add", this.addOne);
     this.listenTo(app.Todos, "reset", this.addAll);
-    this.listenTo(app.Todos, "change:completed", this.addOne);
+    this.listenTo(app.Todos, "change:completed", this.changeCompleted);
     this.listenTo(app.Todos, "filter", this.filterAll);
     this.listenTo(app.Todos, "all", this.render);
     //console.log(app.Todos);
@@ -51,7 +51,11 @@ app.AppView = Backbone.View.extend({
       this.main.hide();
       this.footer.hide();
     }
-    this.allCheckbox.checked = !remaining;
+  },
+  //completed 값이 변화되면 기존위치가 아닌곳으로 옮겨줌
+  changeCompleted: function (todo) {
+    console.log("checked app-view");
+    this.addOne(todo);
   },
   //todo 하나 추가
   addOne: function (todo) {
