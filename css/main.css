@@ -116,14 +116,14 @@ li {
 }
 
 
-#todo-list li.editing .view{
+ li.editing .view{
   display:none;
 }
 
-#todo-list li .edit{
+ .edit{
   display:none;
 }
-#todo-list li.editing .edit{
+ li.editing .edit{
   display:block;
   border: 1px solid #fff;
   font-size: 15px;
