@@ -17,12 +17,12 @@
     </script>
     <script type="text/template" id="item-template">
       <div class="view">
-        <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+        <input class="toggle" type="checkbox" id="check" <%= completed ? 'checked' : '' %>>
 
       	<label><%- title %></label>
-      	<a class="destroy"><i>x</i></a>
+        <a class="destroy"><i>x</i></a>
+        <input class="edit" value="<%- title %>">
       </div>
-      <input class="edit" value="<%- title %>">
     </script>
     <section id="todoapp">
       <header class="header">

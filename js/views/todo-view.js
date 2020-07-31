@@ -10,6 +10,7 @@ app.TodoView = Backbone.View.extend({
     "click .destroy": "clear",
     "keypress .edit": "updateOnEnter",
     "blur .edit": "close",
+    "click #check": "toggleCompleted",
   },
   initialize: function () {
     this.listenTo(this.model, "change", this.render);
@@ -53,6 +54,9 @@ app.TodoView = Backbone.View.extend({
       (!isCompleted && app.TodoFilter == "completed") ||
       (isCompleted && app.TodoFilter === "active")
     );
+  },
+  toggleCompleted: function () {
+    this.remove(); //현재 뷰를 제거한다.
   },
   clear: function () {
     this.model.destroy();

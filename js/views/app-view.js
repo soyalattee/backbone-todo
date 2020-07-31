@@ -23,7 +23,7 @@ app.AppView = Backbone.View.extend({
 
     this.listenTo(app.Todos, "add", this.addOne);
     this.listenTo(app.Todos, "reset", this.addAll);
-    this.listenTo(app.Todos, "change:completed", this.filterOne);
+    this.listenTo(app.Todos, "change:completed", this.addOne);
     this.listenTo(app.Todos, "filter", this.filterAll);
     this.listenTo(app.Todos, "all", this.render);
     //console.log(app.Todos);
@@ -56,7 +56,11 @@ app.AppView = Backbone.View.extend({
   //todo 하나 추가
   addOne: function (todo) {
     let view = new app.TodoView({ model: todo });
-    $("#todo-list").append(view.render().el);
+    if (todo.get("completed")) {
+      $("#done-list").append(view.render().el);
+    } else {
+      $("#todo-list").append(view.render().el);
+    }
   },
   //Todos collections의 목록 한번에 모두 추가
   addAll: function () {
