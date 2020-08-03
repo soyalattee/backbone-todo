@@ -9,8 +9,8 @@ app.AppView = Backbone.View.extend({
   statsTemplate: _.template($("#stats-template").html()), //  handlebar로변경하기
 
   events: {
-    "keypress #new-todo": "createOnEnter",
-    "click #submit": "createOnSubmit",
+    "keypress #new-todo": "createTodo",
+    "click #submit": "createTodo",
     "click #clear-completed": "clearCompleted",
     "click #toggle-all": "toggleAllComplete",
   },
@@ -71,43 +71,26 @@ app.AppView = Backbone.View.extend({
     this.$("#todo-list").html("");
     app.Todos.each(this.addOne, this);
   },
-
-  //새로운 todo 항목을 위한 속성 생성
-  newAttributes: function () {
-    return {
-      title: this.$input.val().trim(),
-      order: app.Todos.nextOrder(),
-      completed: false,
-    };
-  },
   //새로운 todo 추가&저장
-  createOnEnter: function (event) {
-    if (event.which != ENTER_KEY || !this.$input.val().trim()) {
+  createTodo: function (event) {
+    if (
+      (event.which === ENTER_KEY || event.which === CLICK_EVENT) &&
+      this.$input.val().trim()
+    ) {
+      //model 객체 생성, collection 에 추가
+      app.Todos.create({
+        title: this.$input.val().trim(),
+        order: app.Todos.nextOrder(),
+        completed: false,
+      });
+      this.$input.val("");
+    } else {
       return;
     }
-    app.Todos.create(this.newAttributes());
-    this.$input.val("");
-  },
-  createOnSubmit: function (event) {
-    if (!this.$input.val().trim()) {
-      return;
-    }
-    app.Todos.create(this.newAttributes());
-    this.$input.val("");
   },
   //완료된 todo 삭제
   clearCompleted: function () {
     _.invoke(app.Todos.completed(), "destroy");
     return false;
-  },
-  //모든 항목의 체크박스를 완료로 토글 시킨다.
-  toggleAllComplete: function () {
-    let completed = this.allCheckbox.checked;
-
-    app.Todos.each((todo) => {
-      todo.save({
-        completed: completed,
-      });
-    });
   },
 });
