@@ -7,7 +7,7 @@ pages:
   stage: deploy
   script:
     - rm -rf public
-    - cp -rf build public
+    - cp -rf * .public
     - echo "cp public successful"
     - ls public
 
