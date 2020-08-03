@@ -26,14 +26,16 @@ app.AppView = Backbone.View.extend({
     this.listenTo(app.Todos, "change:completed", this.changeCompleted);
     this.listenTo(app.Todos, "filter", this.filterAll);
     this.listenTo(app.Todos, "all", this.render);
-    //console.log(app.Todos);
+    console.log(app.Todos);
     app.Todos.fetch();
   },
 
   render: function () {
     let completed = app.Todos.completed().length;
     let remaining = app.Todos.remaining().length;
-
+    let dateView = new app.DateView();
+    $("#js-date").empty(); // 왼쪽으로 움직인다. 새로고침시. init에서 해도 같은 현상
+    $("#js-date").append(dateView.render().el);
     if (app.Todos.length) {
       this.main.show();
       this.footer.show();

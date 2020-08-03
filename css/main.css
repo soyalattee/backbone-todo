@@ -2,7 +2,7 @@
 .header {
   width: 45%;
   margin-left:25%;
-  padding: 100px 20px 20px 20px;
+  padding: 60px 20px 20px 20px;
 }
 
 button {border:0 none; background-color:transparent; cursor:pointer;}
@@ -11,6 +11,8 @@ body {
   font-family:  "Nanum Gothic",'맑은 고딕', "Times New Roman", serif;
   overflow-x: hidden;
   overflow-y: auto;
+  left:0;
+  top:0;
 }
 
 #main h1{
@@ -18,7 +20,7 @@ body {
   display: inline-block;
 }
 .js-date {
-  padding: 90px 10px 10px 10px;
+  padding: 30px 10px 30px 10px;
   text-align: center;
   margin-top: 0px;
   
@@ -37,13 +39,13 @@ body {
 
 input.button {
   color: #F3FDFF;
-  background-color: #BBD1C7;
+  background-color: rgb(125, 153, 237);
   border-style: none;
   padding : 0.9rem 1.075rem;
   border-radius: 6px;
   margin-left : 5px;
   margin-bottom: 20px;
-
+  font-weight: 900;
 }
 
 #clear-completed{
@@ -54,7 +56,7 @@ input.button {
 }
 
 body .todo, .done {
-  color: #00414F;
+  color: rgb(39, 70, 121);
   position: relative;
 }
 
@@ -125,7 +127,7 @@ li {
   display: flex;
   padding: 0.6rem 1rem;
   margin : 0.6rem 0;
-  border: 0.1rem solid #BBD1C7;
+  border: 0.1rem solid rgb(165, 184, 240);
   width:80%
 }
 
