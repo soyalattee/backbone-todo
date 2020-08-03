@@ -9,11 +9,13 @@
   </head>
   <body>
     <script type="text/template" id="stats-template">
-      <span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
-
       <% if (completed) { %>
       <button id="clear-completed">Clear completed</button>
       <% } %>
+    </script>
+    <script type="text/template" id="date-template">
+      <div class="date"><%= date %></div>
+      <div class="day"><%= day %></div>
     </script>
     <script type="text/template" id="item-template">
       <div class="view">
@@ -26,7 +28,7 @@
     </script>
     <section id="todoapp">
       <header class="header">
-        <h1>todos</h1>
+        <div class="js-date"></div>
         <input
           id="new-todo"
           class="form-control todo-list-input"
@@ -34,19 +36,18 @@
           autofocus
         /><input type="submit" id="submit" class="button" value="추가" />
       </header>
-      <section class="todo" id="main">
-        <h1>할일</h1>
-        <ul id="todo-list"></ul>
-      </section>
-      <section class="done" id="main">
-        <h1>한일</h1>
-        <ul id="done-list"></ul>
-      </section>
-      <footer id="footer"></footer>
+      <div class="listBox">
+        <section class="todo" id="main">
+          <h1>할일</h1>
+          <ul id="todo-list"></ul>
+        </section>
+        <section class="done" id="main">
+          <h1>한일</h1>
+          <div id="footer" class="clear-button"></div>
+          <ul id="done-list"></ul>
+        </section>
+      </div>
     </section>
-
-    <div class="js-date"></div>
-    <div class="listBox"></div>
     <script src="js/lib/jquery-3.5.1.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"></script>
