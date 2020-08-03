@@ -64,7 +64,6 @@ body .todo, .done {
   width: 100%;
   position: absolute;
   left:24%;
-  display: inline-block;
 }
 
 .toDoList h3{
@@ -90,9 +89,7 @@ body .todo, .done {
   float:left;
 }
 
-.done{
-  display: inline;
-}
+
 .add-items {
   margin-bottom: 1.5rem;
   overflow: hidden

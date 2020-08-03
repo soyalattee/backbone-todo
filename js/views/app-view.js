@@ -37,7 +37,6 @@ app.AppView = Backbone.View.extend({
     $("#js-date").empty(); // 왼쪽으로 움직인다. 새로고침시. init에서 해도 같은 현상
     $("#js-date").append(dateView.render().el);
     if (app.Todos.length) {
-      this.main.show();
       this.footer.show();
       this.footer.html(
         this.statsTemplate({
@@ -50,7 +49,6 @@ app.AppView = Backbone.View.extend({
         .filter('[href="#/' + (app.TodoFilter || "") + '"]')
         .addClass("selected");
     } else {
-      this.main.hide();
       this.footer.hide();
     }
   },
@@ -73,12 +71,7 @@ app.AppView = Backbone.View.extend({
     this.$("#todo-list").html("");
     app.Todos.each(this.addOne, this);
   },
-  filterOne: function (todo) {
-    todo.trigger("visible");
-  },
-  filterAll: function () {
-    app.Todos.each(this.filterOne, this);
-  },
+
   //새로운 todo 항목을 위한 속성 생성
   newAttributes: function () {
     return {
