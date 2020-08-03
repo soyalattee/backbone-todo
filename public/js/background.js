@@ -17,3 +17,4 @@ function getRandom() {
   const randomNumber = getRandom();
   getImage(randomNumber);
 })();
+ 

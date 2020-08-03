@@ -1,0 +1,20 @@
+image: node:12
+
+stages:
+  - deploy
+
+pages:
+  stage: deploy
+  script:
+    - rm -rf public
+    - cp -rf build public
+    - echo "cp public successful"
+    - ls public
+
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+  tags:
+    - docker
