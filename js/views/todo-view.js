@@ -42,11 +42,6 @@ app.TodoView = Backbone.View.extend({
   togglecompleted: function () {
     this.model.toggle();
   },
-  //항복을 보여주거나 숨길 수 있게 됨
-
-  toggleCompleted: function () {
-    this.remove(); //현재 뷰를 제거한다.
-  },
   clear: function () {
     this.model.destroy();
   },

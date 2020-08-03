@@ -12,19 +12,17 @@ app.AppView = Backbone.View.extend({
     "keypress #new-todo": "createTodo",
     "click #submit": "createTodo",
     "click #clear-completed": "clearCompleted",
-    "click #toggle-all": "toggleAllComplete",
   },
   initialize: function () {
-    // console.log(this.el);
+    //console.log(this.el);
     this.allCheckbox = this.$("#toggle-all")[0];
     this.$input = this.$("#new-todo");
     this.footer = this.$("#footer");
     this.main = this.$("#main");
 
-    this.listenTo(app.Todos, "add", this.addOne);
+    this.listenTo(app.Todos, "add", this.addTodoView);
     this.listenTo(app.Todos, "reset", this.addAll);
     this.listenTo(app.Todos, "change:completed", this.changeCompleted);
-    this.listenTo(app.Todos, "filter", this.filterAll);
     this.listenTo(app.Todos, "all", this.render);
     console.log(app.Todos);
     app.Todos.fetch();
@@ -52,24 +50,25 @@ app.AppView = Backbone.View.extend({
       this.footer.hide();
     }
   },
-  //completed 값이 변화되면 기존위치가 아닌곳으로 옮겨줌
   changeCompleted: function (todo) {
-    console.log("checked app-view");
-    this.addOne(todo);
+    $("#todo-list").empty();
+    $("#done-list").empty();
+    this.addAll(todo);
   },
-  //todo 하나 추가
-  addOne: function (todo) {
+  //todo 모델 뷰 추가
+  addTodoView: function (todo) {
     let view = new app.TodoView({ model: todo });
     if (todo.get("completed")) {
       $("#done-list").append(view.render().el);
     } else {
+      console.log("추가");
       $("#todo-list").append(view.render().el);
     }
   },
   //Todos collections의 목록 한번에 모두 추가
   addAll: function () {
     this.$("#todo-list").html("");
-    app.Todos.each(this.addOne, this);
+    app.Todos.each(this.addTodoView, this);
   },
   //새로운 todo 추가&저장
   createTodo: function (event) {
