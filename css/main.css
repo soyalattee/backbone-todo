@@ -56,14 +56,15 @@ input.button {
 }
 
 body .todo, .done {
-  color: rgb(39, 70, 121);
-  position: relative;
+
 }
 
 .listBox{
   width: 100%;
   display: flex;
+  align-items: flex-start;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .toDoList h3{
@@ -75,10 +76,11 @@ body .todo, .done {
 
 .todo,
 .done {
+  color: rgb(39, 70, 121);
+  position: relative;
   background: #FDFDFF;
   padding : 10px 10px 30px 30px;
   width:20%;
-  float: left;
   margin: 30px 30px 40px 20px;
   position: relative;
   border-radius: 5px 5px 5px 5px;
