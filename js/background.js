@@ -4,7 +4,7 @@ const IMG_NUMBER = 3;
 
 function getImage(imgNumber) {
   const img = new Image();
-  img.src = `../img/${imgNumber + 1}.jpg`;
+  img.src = `./img/${imgNumber + 1}.jpg`;
   img.classList.add("bgImage");
   body.prepend(img);
 }
@@ -17,4 +17,3 @@ function getRandom() {
   const randomNumber = getRandom();
   getImage(randomNumber);
 })();
- 
